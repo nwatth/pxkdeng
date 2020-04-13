@@ -4,7 +4,7 @@ RSpec.describe Pxkdeng::Card do
   it { is_expected.to have_attributes(rank: "A") }
   it { is_expected.to have_attributes(suit: "Spades") }
 
-  it "does print as string" do
+  it "has a printable ability" do
     expect(subject.to_s).to eq("A(Spades)")
   end
 end
