@@ -1,4 +1,5 @@
 require "pxkdeng/version"
+require "pxkdeng/card"
 require "pxkdeng/deck"
 
 module Pxkdeng
