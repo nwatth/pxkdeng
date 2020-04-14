@@ -2,18 +2,17 @@ module Pxkdeng
   class Game
     STATUS = %w(waiting playing finished)
 
-    attr_reader :owner, :members, :deck, :status, :drawn_cards
+    attr_reader :owner, :members, :deck, :status
 
     def initialize(owner, deck)
       @owner = owner
       @deck = deck
       @members = [@owner]
       @status = STATUS[0]
-      @drawn_cards = []
     end
 
     def add_member(player)
-      raise GameError::TooLate, "A game has already started" if status == STATUS[1]
+      raise GameError::TooLate, "A game has already started" unless status == STATUS[0]
 
       @members << player
     end
@@ -25,21 +24,25 @@ module Pxkdeng
       2.times do
         @members.each do |member|
           draw_card(member, deck)
+          member.update_score
         end
       end
     end
 
     def draw_card(member, deck)
-      drawn_cards << [member, deck.cards.pop]
-    end
+      card = deck.cards.pop
+      member.hand_cards << card
 
-    def member_cards(member)
-      @drawn_cards.select{ |drawn_card| drawn_card[0] == member }
+      # after_draw_card(member, card) if self.respond_to?(:after_draw_card)
     end
 
     def pxk?(member)
-      member_cards(member).sum{ |card| card[1].value }.between?(8,9)
+      member.score.between?(8,9)
     end
+
+    # def after_draw_card(member, card)
+    #   pust "#{member.name}"
+    # end
   end
 
   module GameError

@@ -24,9 +24,8 @@ RSpec.describe Pxkdeng::Game do
       subject.add_member(player)
       subject.start
 
-      expect(subject.drawn_cards.count).to eq(4)
-      expect(subject.member_cards(owner).count).to eq(2)
-      expect(subject.member_cards(player).count).to eq(2)
+      expect(owner.hand_cards.count).to eq(2)
+      expect(player.hand_cards.count).to eq(2)
       expect(subject.deck.cards.count).to eq(48)
     end
   end
@@ -34,7 +33,7 @@ RSpec.describe Pxkdeng::Game do
   describe "pxk?" do
     context "drawn cards'value is between 8,9" do
       it "return true" do
-        allow_any_instance_of(Pxkdeng::Card).to receive(:value).and_return(4)
+        allow(Pxkdeng::Value).to receive(:get).and_return(4)
 
         subject.start
 
@@ -44,7 +43,7 @@ RSpec.describe Pxkdeng::Game do
 
     context "drawn cards'value not between 8,9" do
       it "return true" do
-        allow_any_instance_of(Pxkdeng::Card).to receive(:value).and_return(10)
+        allow(Pxkdeng::Value).to receive(:get).and_return(10)
 
         subject.start
 
