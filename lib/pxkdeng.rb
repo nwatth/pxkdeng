@@ -10,6 +10,7 @@ require "pxkdeng/rules/sam_deng"
 require "pxkdeng/rules/heluxng"
 require "pxkdeng/rules/txng"
 require "pxkdeng/rules/reiyng"
+require "pxkdeng/game"
 
 module Pxkdeng
   class Error < StandardError; end
