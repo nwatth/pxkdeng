@@ -1,7 +1,8 @@
 RSpec.describe Pxkdeng::Game do
   let(:owner) { Pxkdeng::Player.new("owner") }
   let(:player) { Pxkdeng::Player.new("player_1") }
-  subject { described_class.new(owner) }
+  let(:deck) { Pxkdeng::Deck.new }
+  subject { described_class.new(owner, deck) }
 
   describe "#add_member" do
     it "add player to a game's members" do
