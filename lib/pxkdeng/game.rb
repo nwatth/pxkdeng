@@ -11,7 +11,14 @@ module Pxkdeng
     end
 
     def add_member(player)
+      raise GameError::TooLate, "A game has already started" if status == STATUS[1]
+
       @members << player
     end
+  
+  end
+
+  module GameError
+    class TooLate < StandardError; end
   end
 end
