@@ -37,7 +37,7 @@ RSpec.describe Pxkdeng::Game do
 
         subject.start
 
-        expect(subject.pxk?(owner)).to eq(true)
+        expect(owner.pxk?).to eq(true)
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe Pxkdeng::Game do
 
         subject.start
 
-        expect(subject.pxk?(owner)).to eq(false)
+        expect(owner.pxk?).to eq(false)
       end
     end
   end

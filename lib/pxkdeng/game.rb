@@ -36,10 +36,6 @@ module Pxkdeng
       # after_draw_card(member, card) if self.respond_to?(:after_draw_card)
     end
 
-    def pxk?(member)
-      member.score.between?(8,9)
-    end
-
     # def after_draw_card(member, card)
     #   pust "#{member.name}"
     # end

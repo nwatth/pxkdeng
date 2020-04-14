@@ -11,5 +11,10 @@ module Pxkdeng
     def update_score
       @score = hand_cards.sum{ |card| Pxkdeng::Value.get(card.rank) }
     end
+
+    def pxk?
+      score.between?(8,9)
+    end    
   end
 end
+
