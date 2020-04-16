@@ -7,7 +7,7 @@ module Pxkdeng
 
     def initialize
       @cards = RANKS.product(SUITS)
-        .map{ |rank, suit| Card.new(rank, suit) }
+        .map.with_index{ |card, index| Card.new(card[0], card[1], index) }
         .shuffle
     end
   end
